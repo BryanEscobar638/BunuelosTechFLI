@@ -23,6 +23,9 @@ HTML, CSS y JavaScript puro. Sin dependencias, sin build, sin frameworks: abres 
   el patrón se va desfasando solo mes con mes.
 - Arriba siempre se ve **“El próximo en traer es …”** con fecha y cuenta regresiva
   (`mañana`, `en 3 días`, `¡es hoy!`).
+- Debajo va la **tira de turnos**: el orden empezando por quien sigue, con el chip de color
+  relleno para el próximo turno y un `↺` al final que indica que el ciclo se repite.
+  En móvil se desliza horizontalmente.
 - El calendario resalta **hoy** (borde naranja) y marca el **próximo evento** con un punto.
 
 ## Cambiar nombres o la fecha de inicio

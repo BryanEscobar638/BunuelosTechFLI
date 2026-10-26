@@ -87,28 +87,40 @@ function renderNext() {
 
   el('nextEyebrow').textContent = diff === 0 ? 'Hoy le toca a' : 'El próximo en traer es';
   el('nextName').textContent = person.name;
-  el('nextName').style.setProperty('--c', person.color);
+  el('hero').style.setProperty('--c', person.color);
   el('nextDate').textContent = clean(fmtLong.format(new Date(next)));
 
   el('nextCountdown').textContent =
     diff === 0 ? '¡es hoy!' : diff === 1 ? 'mañana' : `en ${diff} días`;
 
-  // Orden de rotación, empezando por el siguiente
+  // Tira de turnos, empezando por el siguiente en la rotación
   const startIndex = PEOPLE.indexOf(person);
-  const ul = el('rotation');
-  ul.innerHTML = '';
+  const rail = el('rotation');
+  rail.innerHTML = '';
+
   for (let i = 0; i < PEOPLE.length; i++) {
     const p = PEOPLE[(startIndex + i) % PEOPLE.length];
-    const li = document.createElement('li');
-    li.style.setProperty('--c', p.color);
-    if (i === 0) li.classList.add('is-next');
-    li.innerHTML =
-      `<span class="num">${i + 1}</span>` +
-      `<span class="dot"></span>` +
-      `<span>${p.name}</span>` +
-      (i === 0 ? '<span class="tag">siguiente</span>' : '');
-    ul.appendChild(li);
+    const turn = document.createElement('span');
+    turn.className = 'turn' + (i === 0 ? ' is-next' : '');
+    turn.style.setProperty('--c', p.color);
+    turn.innerHTML = `<span class="dot"></span><span class="lbl">${p.name}</span>`;
+    if (i === 0) turn.title = 'Siguiente turno';
+    rail.appendChild(turn);
+
+    if (i < PEOPLE.length - 1) {
+      const sep = document.createElement('span');
+      sep.className = 'sep';
+      sep.setAttribute('aria-hidden', 'true');
+      sep.textContent = '→';
+      rail.appendChild(sep);
+    }
   }
+
+  const loop = document.createElement('span');
+  loop.className = 'sep sep-loop';
+  loop.setAttribute('aria-hidden', 'true');
+  loop.textContent = '↺';
+  rail.appendChild(loop);
 
   return next;
 }

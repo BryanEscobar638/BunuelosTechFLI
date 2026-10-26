@@ -19,8 +19,8 @@
       </div>
     </header>
 
-    <section class="hero card" aria-live="polite">
-      <div>
+    <section class="hero card" id="hero" aria-live="polite">
+      <div class="hero-main">
         <div class="eyebrow" id="nextEyebrow">El próximo en traer es</div>
         <span id="nextName">—</span>
         <div class="next-meta">
@@ -29,9 +29,12 @@
         </div>
       </div>
 
-      <div>
-        <p class="rotation-title">Orden de rotación</p>
-        <ul class="rotation" id="rotation"></ul>
+      <div class="rail-block">
+        <div class="rail-head">
+          <p class="rotation-title">Orden de rotación</p>
+          <span class="rail-hint">5 personas</span>
+        </div>
+        <div class="rail" id="rotation" aria-label="Orden de rotación"></div>
       </div>
     </section>
 
