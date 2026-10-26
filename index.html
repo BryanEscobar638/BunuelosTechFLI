@@ -3,128 +3,712 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buñuelos Tech FLI</title>
-  <meta name="description" content="Buñuelos Tech FLI — proyecto web." />
+  <title>Buñuelos Tech · Calendario de rotación</title>
+  <meta name="description" content="Calendario de Buñuelos Tech: a quién le toca traer buñuelos los martes y viernes." />
+  <meta name="theme-color" content="#FDF6EC" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='%23E8B27A'/><circle cx='36' cy='38' r='6' fill='%23B4530F'/><circle cx='62' cy='44' r='5' fill='%23B4530F'/><circle cx='46' cy='62' r='6' fill='%23B4530F'/><circle cx='68' cy='66' r='4' fill='%23B4530F'/></svg>" />
   <style>
     :root {
-      --bg: #0f1220;
-      --card: #171b2e;
-      --text: #eef1ff;
-      --muted: #9aa3c7;
-      --accent: #ffb347;
-      --accent-2: #ff6b6b;
+      --bg: #FDF6EC;
+      --surface: #FFFFFF;
+      --surface-2: #FBF1E4;
+      --ink: #2A211C;
+      --muted: #8A7767;
+      --line: #EADCC9;
+      --accent: #C2410C;
+      --accent-2: #D97706;
+      --radius: 20px;
     }
 
     * { box-sizing: border-box; }
 
+    html { -webkit-text-size-adjust: 100%; }
+
     body {
       margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 32px 20px;
+      padding: 28px 18px 48px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text);
+      color: var(--ink);
       background:
-        radial-gradient(900px 500px at 15% 0%, rgba(255, 179, 71, 0.18), transparent 60%),
-        radial-gradient(700px 400px at 90% 100%, rgba(255, 107, 107, 0.16), transparent 60%),
+        radial-gradient(900px 480px at 8% -10%, rgba(217, 119, 6, 0.14), transparent 60%),
+        radial-gradient(760px 420px at 100% 0%, rgba(194, 65, 12, 0.10), transparent 60%),
         var(--bg);
+      -webkit-font-smoothing: antialiased;
     }
 
-    main {
-      width: 100%;
-      max-width: 720px;
-      background: var(--card);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 20px;
-      padding: 48px 40px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-      text-align: center;
+    .wrap { max-width: 1040px; margin: 0 auto; }
+
+    /* ---------- Header ---------- */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
     }
 
-    .badge {
-      display: inline-block;
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid rgba(255, 179, 71, 0.35);
-      background: rgba(255, 179, 71, 0.08);
-      padding: 6px 14px;
-      border-radius: 999px;
-      margin-bottom: 24px;
+    .logo {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 32% 30%, #F7CE9B, #D98634 62%, #B4530F 100%);
+      box-shadow: inset -3px -4px 10px rgba(120, 53, 8, 0.35), 0 6px 16px rgba(180, 83, 15, 0.25);
     }
 
     h1 {
-      margin: 0 0 16px;
-      font-size: clamp(2rem, 6vw, 3rem);
-      line-height: 1.1;
-      background: linear-gradient(100deg, var(--accent), var(--accent-2));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      margin: 0;
+      font-size: clamp(1.35rem, 3.4vw, 1.7rem);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
     }
 
-    p {
-      margin: 0 auto 32px;
-      max-width: 46ch;
+    header p {
+      margin: 3px 0 0;
+      font-size: 0.85rem;
       color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.6;
     }
 
-    .actions {
+    /* ---------- Hero ---------- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 26px;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px 30px;
+      box-shadow: 0 18px 40px rgba(120, 72, 30, 0.08);
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 0 4px rgba(194, 65, 12, 0.14);
+    }
+
+    #nextName {
+      display: block;
+      font-size: clamp(2.5rem, 8vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.035em;
+      color: var(--c, var(--accent));
+      margin-bottom: 12px;
+    }
+
+    .next-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: var(--muted);
     }
 
-    a.btn {
-      display: inline-block;
-      padding: 12px 26px;
+    .next-meta strong { color: var(--ink); font-weight: 650; }
+
+    .countdown {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(217, 119, 6, 0.13);
+      border-radius: 999px;
+      padding: 5px 11px;
+      white-space: nowrap;
+    }
+
+    .rotation-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 10px;
+    }
+
+    .rotation { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+
+    .rotation li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 11px;
       border-radius: 10px;
+      font-size: 0.92rem;
+      border: 1px solid transparent;
+      transition: background 0.2s ease;
+    }
+
+    .rotation li .num {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      width: 12px;
+    }
+
+    .rotation li .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--c);
+      flex: 0 0 auto;
+    }
+
+    .rotation li.is-next {
+      background: var(--surface-2);
+      border-color: var(--line);
+      font-weight: 700;
+    }
+
+    .rotation li.is-next .num { color: var(--accent); }
+
+    .tag {
+      margin-left: auto;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--c);
+      background: color-mix(in srgb, var(--c) 12%, #fff);
+      border-radius: 999px;
+      padding: 3px 8px;
+    }
+
+    /* ---------- Calendario ---------- */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 40px rgba(120, 72, 30, 0.07);
+    }
+
+    .cal-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 20px 12px;
+      flex-wrap: wrap;
+    }
+
+    .cal-title {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 750;
+      letter-spacing: -0.01em;
+      margin-right: auto;
+    }
+
+    .nav { display: flex; align-items: center; gap: 6px; }
+
+    .nav button {
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 650;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 7px 12px;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .nav button:hover { background: var(--surface-2); border-color: #DFCBB3; }
+    .nav button:active { transform: scale(0.97); }
+
+    .nav .arrow { padding: 7px 11px; font-size: 1rem; line-height: 1; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      padding: 0 20px 20px;
+    }
+
+    .dow {
+      text-align: center;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 4px;
+    }
+
+    .cell {
+      position: relative;
+      min-height: 92px;
+      padding: 8px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      background: #FBF5EC;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .cell.out { background: transparent; }
+    .cell.out .dnum { color: #CBB9A5; }
+
+    .cell.event {
+      background: var(--surface);
+      border-color: var(--line);
+    }
+
+    .cell.today {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.12);
+    }
+
+    .dnum {
+      font-size: 0.8rem;
       font-weight: 600;
-      text-decoration: none;
-      transition: transform 0.15s ease, opacity 0.15s ease;
+      color: var(--muted);
+      line-height: 1;
     }
 
-    a.btn:hover { transform: translateY(-2px); opacity: 0.9; }
+    .cell.event .dnum, .cell.today .dnum { color: var(--ink); }
+    .cell.today .dnum { color: var(--accent); font-weight: 800; }
 
-    .primary {
-      background: linear-gradient(100deg, var(--accent), var(--accent-2));
-      color: #1b1205;
+    .cell.next .dnum::after {
+      content: "";
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      margin-left: 5px;
+      margin-bottom: 1px;
+      border-radius: 50%;
+      background: var(--accent);
     }
 
-    .ghost {
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      color: var(--text);
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 8px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1.2;
+      background: var(--c);
+      background: color-mix(in srgb, var(--c) 11%, #fff);
+      color: var(--c);
+      border-left: 3px solid var(--c);
+      overflow: hidden;
+    }
+
+    .chip .nm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .chip .ini { display: none; }
+
+    /* ---------- Próximas fechas ---------- */
+    .upcoming { margin-top: 18px; padding: 20px 22px 8px; }
+    .upcoming h2 {
+      margin: 0 0 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .u-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 2px;
+      border-top: 1px solid var(--line);
+      font-size: 0.92rem;
+    }
+
+    .u-row:first-of-type { border-top: 0; }
+
+    .u-date {
+      flex: 0 0 118px;
+      font-weight: 650;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .u-row .chip { font-size: 0.8rem; }
+
+    .u-row.is-next .u-date { color: var(--accent); }
+
+    .u-tag {
+      margin-left: auto;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
     }
 
     footer {
-      margin-top: 36px;
-      font-size: 0.8rem;
-      color: #6f7899;
+      margin: 22px auto 0;
+      max-width: 1040px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    footer code {
+      font-size: 0.75rem;
+      background: rgba(180, 83, 15, 0.09);
+      color: var(--accent);
+      padding: 2px 6px;
+      border-radius: 5px;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+      .rotation { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 18px 12px 36px; }
+      .hero { padding: 20px 18px; border-radius: 16px; }
+      .rotation { grid-template-columns: 1fr; gap: 2px; }
+      .rotation li { padding: 6px 8px; }
+      .card { border-radius: 16px; }
+      .cal-head { padding: 14px 14px 10px; }
+      .cal-title { font-size: 1rem; width: 100%; margin-bottom: 8px; }
+      .grid { gap: 3px; padding: 0 12px 14px; }
+      .dow { font-size: 0.6rem; letter-spacing: 0.04em; }
+
+      .cell {
+        min-height: 54px;
+        padding: 5px 3px;
+        border-radius: 8px;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .dnum { font-size: 0.74rem; }
+
+      .cell .chip {
+        width: 22px;
+        height: 22px;
+        padding: 0;
+        justify-content: center;
+        border-left: 0;
+        border-radius: 50%;
+        background: var(--c);
+        color: #fff;
+        font-size: 0.68rem;
+      }
+
+      .cell .chip .nm { display: none; }
+      .cell .chip .ini { display: inline; }
+
+      .cell.next .dnum::after { display: none; }
+
+      .upcoming { padding: 16px 14px 6px; margin-top: 14px; }
+      .u-date { flex: 0 0 96px; font-size: 0.86rem; }
+      .u-row { gap: 8px; }
+      .u-tag { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
     }
   </style>
 </head>
 <body>
-  <main>
-    <span class="badge">Buñuelos Tech</span>
-    <h1>Buñuelos Tech FLI</h1>
-    <p>
-      Bienvenido. Este es el punto de partida del proyecto. Edita este archivo
-      para empezar a construir tu sitio.
-    </p>
-    <div class="actions">
-      <a class="btn primary" href="https://github.com/BryanEscobar638/BunuelosTechFLI" target="_blank" rel="noopener">Ver repositorio</a>
-      <a class="btn ghost" href="#contacto">Contacto</a>
-    </div>
-    <footer id="contacto">&copy; <span id="year"></span> Buñuelos Tech FLI</footer>
-  </main>
+  <div class="wrap">
+    <header>
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Buñuelos Tech</h1>
+        <p>Calendario de rotación · martes y viernes</p>
+      </div>
+    </header>
+
+    <section class="hero card" aria-live="polite">
+      <div>
+        <div class="eyebrow" id="nextEyebrow">El próximo en traer es</div>
+        <span id="nextName">—</span>
+        <div class="next-meta">
+          <span id="nextDate"></span>
+          <span class="countdown" id="nextCountdown"></span>
+        </div>
+      </div>
+
+      <div>
+        <p class="rotation-title">Orden de rotación</p>
+        <ul class="rotation" id="rotation"></ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="cal-head">
+        <h2 class="cal-title" id="monthLabel"></h2>
+        <div class="nav">
+          <button class="arrow" id="prevBtn" aria-label="Mes anterior">‹</button>
+          <button id="todayBtn">Hoy</button>
+          <button class="arrow" id="nextBtn" aria-label="Mes siguiente">›</button>
+        </div>
+      </div>
+      <div class="grid" id="grid" role="grid" aria-label="Calendario de buñuelos"></div>
+    </section>
+
+    <section class="card upcoming">
+      <h2>Próximas fechas</h2>
+      <div id="upcoming"></div>
+    </section>
+  </div>
+
+  <footer>
+    Rotación de 5 personas (Alejandro → Isaac → Bryan → Solano → Jorge) en los días
+    martes y viernes.<br />
+    Para cambiar nombres o la fecha de inicio, edita <code>CONFIG</code> al inicio del script.
+  </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    /* =========================================================
+       CONFIG — edita aquí si cambia el equipo o la rotación
+       ========================================================= */
+    const CONFIG = {
+      // Orden de la rotación (el ciclo se repite en este orden)
+      people: [
+        { name: 'Alejandro', color: '#D9480F' },
+        { name: 'Isaac',     color: '#0C8599' },
+        { name: 'Bryan',     color: '#5F3DC4' },
+        { name: 'Solano',    color: '#C2255C' },
+        { name: 'Jorge',     color: '#2F9E44' },
+      ],
+      // Fecha ancla conocida: martes 27 de octubre de 2026 → le toca a "Solano"
+      anchor: { year: 2026, month: 10, day: 27 },
+      anchorPersonIndex: 3, // 0=Alejandro, 1=Isaac, 2=Bryan, 3=Solano, 4=Jorge
+      eventWeekdays: [2, 5], // 2 = martes, 5 = viernes
+      upcomingCount: 6,
+    };
+
+    /* =========================================================
+       Utilidades de fecha (todo en UTC para evitar saltos de DST)
+       ========================================================= */
+    const DAY = 86400000;
+    const PEOPLE = CONFIG.people;
+
+    const utc = (y, m, d) => Date.UTC(y, m - 1, d);
+    const ANCHOR_MS = utc(CONFIG.anchor.year, CONFIG.anchor.month, CONFIG.anchor.day);
+    const ANCHOR_INDEX = CONFIG.anchorPersonIndex;
+    const ANCHOR_SLOT = CONFIG.eventWeekdays.indexOf(new Date(ANCHOR_MS).getUTCDay());
+
+    const dowOf = (ms) => new Date(ms).getUTCDay();
+    const mondayOf = (ms) => ms - ((dowOf(ms) + 6) % 7) * DAY;
+
+    /** Índice (1, 2, 3...) del evento martes/viernes, o null si el día no es evento. */
+    function slotOf(ms) {
+      const slot = CONFIG.eventWeekdays.indexOf(dowOf(ms));
+      if (slot === -1) return null;
+      const weeks = Math.round((mondayOf(ms) - mondayOf(ANCHOR_MS)) / (7 * DAY));
+      return ANCHOR_INDEX + weeks * CONFIG.eventWeekdays.length + (slot - ANCHOR_SLOT);
+    }
+
+    function personFor(ms) {
+      const slot = slotOf(ms);
+      if (slot === null) return null;
+      return PEOPLE[((slot % PEOPLE.length) + PEOPLE.length) % PEOPLE.length];
+    }
+
+    const isEvent = (ms) => slotOf(ms) !== null;
+
+    /** Hoy, como medianoche UTC del día local. */
+    function todayMs() {
+      const n = new Date();
+      return utc(n.getFullYear(), n.getMonth() + 1, n.getDate());
+    }
+
+    function nextEventFrom(ms) {
+      for (let i = 0; i < 400; i++) {
+        const d = ms + i * DAY;
+        if (isEvent(d)) return d;
+      }
+      return ms;
+    }
+
+    const fmtLong = new Intl.DateTimeFormat('es-MX', {
+      weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC',
+    });
+    const fmtShort = new Intl.DateTimeFormat('es-MX', {
+      weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC',
+    });
+    const fmtMonth = new Intl.DateTimeFormat('es-MX', {
+      month: 'long', year: 'numeric', timeZone: 'UTC',
+    });
+
+    const clean = (s) => s.replace(/\.$/, '');
+    const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
+    /* =========================================================
+       Render
+       ========================================================= */
+    const el = (id) => document.getElementById(id);
+    const TODAY = todayMs();
+
+    function renderNext() {
+      const next = nextEventFrom(TODAY);
+      const person = personFor(next);
+      const diff = Math.round((next - TODAY) / DAY);
+
+      el('nextEyebrow').textContent = diff === 0 ? 'Hoy le toca a' : 'El próximo en traer es';
+      el('nextName').textContent = person.name;
+      el('nextName').style.setProperty('--c', person.color);
+      el('nextDate').textContent = clean(fmtLong.format(new Date(next)));
+
+      el('nextCountdown').textContent =
+        diff === 0 ? '¡es hoy!' : diff === 1 ? 'mañana' : `en ${diff} días`;
+
+      // Orden de rotación, empezando por el siguiente
+      const startIndex = PEOPLE.indexOf(person);
+      const ul = el('rotation');
+      ul.innerHTML = '';
+      for (let i = 0; i < PEOPLE.length; i++) {
+        const p = PEOPLE[(startIndex + i) % PEOPLE.length];
+        const li = document.createElement('li');
+        li.style.setProperty('--c', p.color);
+        if (i === 0) li.classList.add('is-next');
+        li.innerHTML =
+          `<span class="num">${i + 1}</span>` +
+          `<span class="dot"></span>` +
+          `<span>${p.name}</span>` +
+          (i === 0 ? '<span class="tag">siguiente</span>' : '');
+        ul.appendChild(li);
+      }
+
+      return next;
+    }
+
+    /* ---------- Calendario ---------- */
+    let view = (() => {
+      const d = new Date(TODAY);
+      return { y: d.getUTCFullYear(), m: d.getUTCMonth() };
+    })();
+
+    const DOW_LABELS = ['lun', 'mar', 'mié', 'jue', 'vie', 'sáb', 'dom'];
+
+    function renderCalendar() {
+      const first = Date.UTC(view.y, view.m, 1);
+      const offset = (dowOf(first) + 6) % 7;
+      const daysInMonth = new Date(Date.UTC(view.y, view.m + 1, 0)).getUTCDate();
+      const cells = Math.ceil((offset + daysInMonth) / 7) * 7;
+
+      const next = nextEventFrom(TODAY);
+      const grid = el('grid');
+      grid.innerHTML = '';
+
+      DOW_LABELS.forEach((label) => {
+        const h = document.createElement('div');
+        h.className = 'dow';
+        h.textContent = label;
+        grid.appendChild(h);
+      });
+
+      for (let i = 0; i < cells; i++) {
+        const ms = first - offset * DAY + i * DAY;
+        const d = new Date(ms);
+        const inMonth = d.getUTCMonth() === view.m;
+        const person = isEvent(ms) ? personFor(ms) : null;
+
+        const cell = document.createElement('div');
+        cell.className = 'cell';
+        if (!inMonth) cell.classList.add('out');
+        if (person && inMonth) cell.classList.add('event');
+        if (ms === TODAY) cell.classList.add('today');
+        if (ms === next && inMonth) cell.classList.add('next');
+
+        const label = person
+          ? `${clean(fmtLong.format(d))} — trae ${person.name}`
+          : clean(fmtLong.format(d));
+        cell.setAttribute('role', 'gridcell');
+        cell.setAttribute('aria-label', label);
+        if (person) cell.title = label;
+
+        const num = document.createElement('span');
+        num.className = 'dnum';
+        num.textContent = d.getUTCDate();
+        cell.appendChild(num);
+
+        if (person && inMonth) {
+          const chip = document.createElement('span');
+          chip.className = 'chip';
+          chip.style.setProperty('--c', person.color);
+          chip.innerHTML =
+            `<span class="ini">${person.name[0]}</span>` +
+            `<span class="nm">${person.name}</span>`;
+          cell.appendChild(chip);
+        }
+
+        grid.appendChild(cell);
+      }
+
+      el('monthLabel').textContent = cap(fmtMonth.format(new Date(Date.UTC(view.y, view.m, 1))));
+    }
+
+    /* ---------- Próximas fechas ---------- */
+    function renderUpcoming() {
+      const box = el('upcoming');
+      box.innerHTML = '';
+      let ms = nextEventFrom(TODAY);
+
+      for (let i = 0; i < CONFIG.upcomingCount; i++) {
+        const person = personFor(ms);
+        const row = document.createElement('div');
+        row.className = 'u-row' + (i === 0 ? ' is-next' : '');
+        row.innerHTML =
+          `<span class="u-date">${cap(clean(fmtShort.format(new Date(ms))))}</span>` +
+          `<span class="chip" style="--c:${person.color}">` +
+          `<span class="nm">${person.name}</span>` +
+          `<span class="ini">${person.name[0]}</span>` +
+          `</span>` +
+          (i === 0 ? '<span class="u-tag">siguiente</span>' : '');
+        box.appendChild(row);
+
+        ms = nextEventFrom(ms + DAY);
+      }
+    }
+
+    /* ---------- Navegación ---------- */
+    el('prevBtn').addEventListener('click', () => {
+      view.m--;
+      if (view.m < 0) { view.m = 11; view.y--; }
+      renderCalendar();
+    });
+
+    el('nextBtn').addEventListener('click', () => {
+      view.m++;
+      if (view.m > 11) { view.m = 0; view.y++; }
+      renderCalendar();
+    });
+
+    el('todayBtn').addEventListener('click', () => {
+      const d = new Date(TODAY);
+      view = { y: d.getUTCFullYear(), m: d.getUTCMonth() };
+      renderCalendar();
+    });
+
+    renderNext();
+    renderCalendar();
+    renderUpcoming();
   </script>
 </body>
 </html>
