@@ -143,6 +143,20 @@ header p {
   white-space: nowrap;
 }
 
+.badge-special {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(217, 119, 6, 0.14);
+  border-radius: 999px;
+  padding: 4px 9px;
+  white-space: nowrap;
+}
+
+.badge-special[hidden] { display: none; }
+
 /* ---------- Tira de turnos ---------- */
 .rail-block {
   position: relative;
@@ -319,6 +333,26 @@ header p {
   border-color: var(--line);
 }
 
+.cell.special {
+  border-color: var(--c);
+  border-style: dashed;
+}
+
+.cell.special::after {
+  content: "movido";
+  position: absolute;
+  top: 7px;
+  right: 8px;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c);
+  opacity: 0.85;
+}
+
+.cell.special.today::after { display: none; }
+
 .cell.today {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.12);
@@ -471,6 +505,7 @@ footer code {
   .cell .chip .ini { display: inline; }
 
   .cell.next .dnum::after { display: none; }
+  .cell.special::after { display: none; }
 
   .upcoming { padding: 16px 14px 6px; margin-top: 14px; }
   .u-date { flex: 0 0 96px; font-size: 0.86rem; }

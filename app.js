@@ -15,6 +15,15 @@ const CONFIG = {
   anchorPersonIndex: 3, // 0=Alejandro, 1=Isaac, 2=Bryan, 3=Solano, 4=Jorge
   eventWeekdays: [2, 5], // 2 = martes, 5 = viernes
   upcomingCount: 6,
+
+  // Excepciones: días sueltos que se mueven de fecha (no alteran la rotación)
+  // 'AAAA-MM-DD': 'Nombre'
+  overrides: {
+    '2026-11-23': 'Isaac', // lunes 23 nov (en lugar del martes 24)
+    '2026-11-25': 'Bryan', // miércoles 25 nov (en lugar del viernes 27)
+  },
+  // Días sin buñuelos porque su turno se movió
+  skipped: ['2026-11-24', '2026-11-27'],
 };
 
 /* =========================================================
@@ -39,13 +48,35 @@ function slotOf(ms) {
   return ANCHOR_INDEX + weeks * CONFIG.eventWeekdays.length + (slot - ANCHOR_SLOT);
 }
 
+const isoOf = (ms) => new Date(ms).toISOString().slice(0, 10);
+
+const OVERRIDES = new Map(
+  Object.entries(CONFIG.overrides)
+    .map(([date, name]) => [date, PEOPLE.find((p) => p.name === name)])
+    .filter(([, person]) => Boolean(person))
+);
+
+const SKIPPED = new Set(CONFIG.skipped);
+
+const isSpecial = (ms) => OVERRIDES.has(isoOf(ms));
+
+function isEvent(ms) {
+  const key = isoOf(ms);
+  if (SKIPPED.has(key)) return false;
+  return OVERRIDES.has(key) || slotOf(ms) !== null;
+}
+
 function personFor(ms) {
+  const key = isoOf(ms);
+  if (SKIPPED.has(key)) return null;
+
+  const moved = OVERRIDES.get(key);
+  if (moved) return moved;
+
   const slot = slotOf(ms);
   if (slot === null) return null;
   return PEOPLE[((slot % PEOPLE.length) + PEOPLE.length) % PEOPLE.length];
 }
-
-const isEvent = (ms) => slotOf(ms) !== null;
 
 /** Hoy, como medianoche UTC del día local. */
 function todayMs() {
@@ -92,6 +123,8 @@ function renderNext() {
 
   el('nextCountdown').textContent =
     diff === 0 ? '¡es hoy!' : diff === 1 ? 'mañana' : `en ${diff} días`;
+
+  el('nextBadge').hidden = !isSpecial(next);
 
   // Tira de turnos, empezando por el siguiente en la rotación
   const startIndex = PEOPLE.indexOf(person);
@@ -160,11 +193,14 @@ function renderCalendar() {
     cell.className = 'cell';
     if (!inMonth) cell.classList.add('out');
     if (person && inMonth) cell.classList.add('event');
+    if (person && inMonth && isSpecial(ms)) cell.classList.add('special');
     if (ms === TODAY) cell.classList.add('today');
     if (ms === next && inMonth) cell.classList.add('next');
+    if (person) cell.style.setProperty('--c', person.color);
 
     const label = person
-      ? `${clean(fmtLong.format(d))} — trae ${person.name}`
+      ? `${clean(fmtLong.format(d))} — trae ${person.name}` +
+        (isSpecial(ms) ? ' (turno movido)' : '')
       : clean(fmtLong.format(d));
     cell.setAttribute('role', 'gridcell');
     cell.setAttribute('aria-label', label);
@@ -207,6 +243,7 @@ function renderUpcoming() {
       `<span class="nm">${person.name}</span>` +
       `<span class="ini">${person.name[0]}</span>` +
       `</span>` +
+      (isSpecial(ms) ? '<span class="badge-special">turno movido</span>' : '') +
       (i === 0 ? '<span class="u-tag">siguiente</span>' : '');
     box.appendChild(row);
 

@@ -45,12 +45,32 @@ const CONFIG = {
   anchorPersonIndex: 3,                        // 0=Alejandro … 3=Solano
   eventWeekdays: [2, 5],                       // 2=martes, 5=viernes
   upcomingCount: 6,                            // filas en "Próximas fechas"
+
+  // Excepciones: un día suelto que se mueve de fecha
+  overrides: {
+    '2026-11-23': 'Isaac', // lunes 23 nov (en lugar del martes 24)
+    '2026-11-25': 'Bryan', // miércoles 25 nov (en lugar del viernes 27)
+  },
+  // Días sin buñuelos porque su turno se movió
+  skipped: ['2026-11-24', '2026-11-27'],
 };
 ```
 
 Si alguien entra o sale del equipo, actualiza `people` y ajusta `anchor` +
 `anchorPersonIndex` a una fecha en la que sepas con certeza a quién le tocaba.
 El número de integrantes puede cambiar: el ciclo se adapta solo.
+
+## Fechas movidas
+
+`overrides` sirve para días que no caen en martes/viernes o que se recorren por vacaciones,
+puentes o eventos. Van con formato `'AAAA-MM-DD': 'Nombre'`.
+
+- El día se pinta en el calendario con **borde punteado y la etiqueta “movido”**, y en
+  “Próximas fechas” aparece con el badge **TURNO MOVIDO**.
+- `skipped` quita los días originales para que nadie traiga dos veces esa semana.
+- **La rotación no se altera**: el ciclo de martes y viernes sigue igual la semana
+  siguiente (por eso el 23 le toca a Isaac y el 25 a Bryan, los mismos que habrían ido
+  el 24 y el 27).
 
 ## Paleta
 
