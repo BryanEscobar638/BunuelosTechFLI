@@ -16,10 +16,10 @@ HTML, CSS y JavaScript puro. Sin dependencias, sin build, sin frameworks: abres 
 
 ## Cómo funciona
 
-- La rotación es de 5 personas: **Alejandro → Isaac → Bryan → Solano → Jorge**.
+- La rotación es de 6 personas: **Alejandro → Isaac → Bryan → Solano → Jorge → Frank**.
 - Solo cuentan los **martes y viernes** (2 eventos por semana).
 - La asignación no está escrita a mano: sale de una **fecha ancla** (martes 27 de octubre
-  de 2026 → Solano) y se calcula por semanas. Como son 5 personas y 2 días por semana,
+  de 2026 → Solano) y se calcula por semanas. Como son 6 personas y 2 días por semana,
   el patrón se va desfasando solo mes con mes.
 - Arriba siempre se ve **“El próximo en traer es …”** con fecha y cuenta regresiva
   (`mañana`, `en 3 días`, `¡es hoy!`).
@@ -40,6 +40,7 @@ const CONFIG = {
     { name: 'Bryan',     color: '#5F3DC4' },
     { name: 'Solano',    color: '#C2255C' },
     { name: 'Jorge',     color: '#2F9E44' },
+    { name: 'Frank',     color: '#1971C2' },
   ],
   anchor: { year: 2026, month: 10, day: 27 }, // martes 27 oct 2026
   anchorPersonIndex: 3,                        // 0=Alejandro … 3=Solano
@@ -69,8 +70,13 @@ puentes o eventos. Van con formato `'AAAA-MM-DD': 'Nombre'`.
   “Próximas fechas” aparece con el badge **TURNO MOVIDO**.
 - `skipped` quita los días originales para que nadie traiga dos veces esa semana.
 - **La rotación no se altera**: el ciclo de martes y viernes sigue igual la semana
-  siguiente (por eso el 23 le toca a Isaac y el 25 a Bryan, los mismos que habrían ido
-  el 24 y el 27).
+  siguiente. Los turnos movidos no consumen lugar en el ciclo, así que la persona que
+  habría tocado ese martes/viernes simplemente no trae esa semana.
+
+> Con 6 personas, el turno natural de esa semana sería de Frank (mar 24) y Alejandro
+> (vie 27). Como los días movidos quedaron asignados a Isaac y Bryan a mano, ellos
+> vuelven a aparecer el 1 y el 4 de diciembre. Si prefieres que la semana se mueva
+> siguiendo la rotación, cambia `overrides` a `Frank` y `Alejandro`.
 
 ## Paleta
 
@@ -84,6 +90,7 @@ para reconocerlos de un vistazo:
 | Bryan     | violeta   | `#5F3DC4` |
 | Solano    | frambuesa | `#C2255C` |
 | Jorge     | verde     | `#2F9E44` |
+| Frank     | azul      | `#1971C2` |
 
 ## Responsive
 

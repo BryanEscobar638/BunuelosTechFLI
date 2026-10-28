@@ -9,10 +9,11 @@ const CONFIG = {
     { name: 'Bryan',     color: '#5F3DC4' },
     { name: 'Solano',    color: '#C2255C' },
     { name: 'Jorge',     color: '#2F9E44' },
+    { name: 'Frank',     color: '#1971C2' },
   ],
   // Fecha ancla conocida: martes 27 de octubre de 2026 → le toca a "Solano"
   anchor: { year: 2026, month: 10, day: 27 },
-  anchorPersonIndex: 3, // 0=Alejandro, 1=Isaac, 2=Bryan, 3=Solano, 4=Jorge
+  anchorPersonIndex: 3, // 0=Alejandro, 1=Isaac, 2=Bryan, 3=Solano, 4=Jorge, 5=Frank
   eventWeekdays: [2, 5], // 2 = martes, 5 = viernes
   upcomingCount: 6,
 
@@ -125,6 +126,8 @@ function renderNext() {
     diff === 0 ? '¡es hoy!' : diff === 1 ? 'mañana' : `en ${diff} días`;
 
   el('nextBadge').hidden = !isSpecial(next);
+
+  el('railCount').textContent = `${PEOPLE.length} personas`;
 
   // Tira de turnos, empezando por el siguiente en la rotación
   const startIndex = PEOPLE.indexOf(person);
