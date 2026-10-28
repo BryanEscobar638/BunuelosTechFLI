@@ -20,8 +20,8 @@ const CONFIG = {
   // Excepciones: días sueltos que se mueven de fecha (no alteran la rotación)
   // 'AAAA-MM-DD': 'Nombre'
   overrides: {
-    '2026-11-23': 'Isaac', // lunes 23 nov (en lugar del martes 24)
-    '2026-11-25': 'Bryan', // miércoles 25 nov (en lugar del viernes 27)
+    '2026-11-23': 'Frank',     // lunes 23 nov (en lugar del martes 24)
+    '2026-11-25': 'Alejandro', // miércoles 25 nov (en lugar del viernes 27)
   },
   // Días sin buñuelos porque su turno se movió
   skipped: ['2026-11-24', '2026-11-27'],

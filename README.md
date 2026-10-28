@@ -49,8 +49,8 @@ const CONFIG = {
 
   // Excepciones: un día suelto que se mueve de fecha
   overrides: {
-    '2026-11-23': 'Isaac', // lunes 23 nov (en lugar del martes 24)
-    '2026-11-25': 'Bryan', // miércoles 25 nov (en lugar del viernes 27)
+    '2026-11-23': 'Frank',     // lunes 23 nov (en lugar del martes 24)
+    '2026-11-25': 'Alejandro', // miércoles 25 nov (en lugar del viernes 27)
   },
   // Días sin buñuelos porque su turno se movió
   skipped: ['2026-11-24', '2026-11-27'],
@@ -73,10 +73,9 @@ puentes o eventos. Van con formato `'AAAA-MM-DD': 'Nombre'`.
   siguiente. Los turnos movidos no consumen lugar en el ciclo, así que la persona que
   habría tocado ese martes/viernes simplemente no trae esa semana.
 
-> Con 6 personas, el turno natural de esa semana sería de Frank (mar 24) y Alejandro
-> (vie 27). Como los días movidos quedaron asignados a Isaac y Bryan a mano, ellos
-> vuelven a aparecer el 1 y el 4 de diciembre. Si prefieres que la semana se mueva
-> siguiendo la rotación, cambia `overrides` a `Frank` y `Alejandro`.
+> Ejemplo: la semana del 23 de noviembre de 2026 le toca a Frank (martes 24) y
+> Alejandro (viernes 27), pero se recorre a lunes 23 y miércoles 25. Como son los
+> mismos turnos, nadie trae dos veces y el ciclo sigue igual el 1 de diciembre (Isaac).
 
 ## Paleta
 
