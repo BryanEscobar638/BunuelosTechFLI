@@ -52,8 +52,8 @@ const CONFIG = {
     '2026-11-23': 'Jorge',     // lunes 23 nov (en lugar del martes 24)
     '2026-11-25': 'Frank',     // miércoles 25 nov (en lugar del viernes 27)
   },
-  // Días sin buñuelos porque su turno se movió
-  skipped: ['2026-11-24', '2026-11-27'],
+  // Días sin buñuelos (turno movido o cancelado)
+  skipped: ['2026-11-03', '2026-11-24', '2026-11-27'],
 };
 ```
 
@@ -69,6 +69,8 @@ puentes o eventos. Van con formato `'AAAA-MM-DD': 'Nombre'`.
 - El día se pinta en el calendario con **borde punteado y la etiqueta “movido”**, y en
   “Próximas fechas” aparece con el badge **TURNO MOVIDO**.
 - `skipped` quita los días originales para que nadie traiga dos veces esa semana.
+  También sirve para dejar un día **vacío** (sin buñuelos), por ejemplo el martes 3 de
+  noviembre de 2026.
 - **La rotación no se altera**: el ciclo de martes y viernes sigue igual la semana
   siguiente. Los turnos movidos no consumen lugar en el ciclo, así que la persona que
   habría tocado ese martes/viernes simplemente no trae esa semana.

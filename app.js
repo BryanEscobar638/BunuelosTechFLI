@@ -23,8 +23,8 @@ const CONFIG = {
     '2026-11-23': 'Jorge',     // lunes 23 nov (en lugar del martes 24)
     '2026-11-25': 'Frank',     // miércoles 25 nov (en lugar del viernes 27)
   },
-  // Días sin buñuelos porque su turno se movió
-  skipped: ['2026-11-24', '2026-11-27'],
+  // Días sin buñuelos (turno movido o cancelado)
+  skipped: ['2026-11-03', '2026-11-24', '2026-11-27'],
 };
 
 /* =========================================================
