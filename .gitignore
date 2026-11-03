@@ -1,0 +1,7 @@
+# OpenCode project config (contains MCP credentials)
+opencode.json
+opencode.jsonc
+
+# Local environment files
+.env
+.env.*

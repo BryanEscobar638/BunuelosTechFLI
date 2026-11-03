@@ -11,17 +11,17 @@ const CONFIG = {
     { name: 'Jorge',     color: '#2F9E44' },
     { name: 'Frank',     color: '#1971C2' },
   ],
-  // Fecha ancla conocida: martes 27 de octubre de 2026 → le toca a "Solano"
+  // Fecha ancla conocida: martes 27 de octubre de 2026 → le toca a "Bryan"
   anchor: { year: 2026, month: 10, day: 27 },
-  anchorPersonIndex: 3, // 0=Alejandro, 1=Isaac, 2=Bryan, 3=Solano, 4=Jorge, 5=Frank
+  anchorPersonIndex: 2, // 0=Alejandro, 1=Isaac, 2=Bryan, 3=Solano, 4=Jorge, 5=Frank
   eventWeekdays: [2, 5], // 2 = martes, 5 = viernes
   upcomingCount: 6,
 
   // Excepciones: días sueltos que se mueven de fecha (no alteran la rotación)
   // 'AAAA-MM-DD': 'Nombre'
   overrides: {
-    '2026-11-23': 'Frank',     // lunes 23 nov (en lugar del martes 24)
-    '2026-11-25': 'Alejandro', // miércoles 25 nov (en lugar del viernes 27)
+    '2026-11-23': 'Jorge',     // lunes 23 nov (en lugar del martes 24)
+    '2026-11-25': 'Frank',     // miércoles 25 nov (en lugar del viernes 27)
   },
   // Días sin buñuelos porque su turno se movió
   skipped: ['2026-11-24', '2026-11-27'],

@@ -19,7 +19,7 @@ HTML, CSS y JavaScript puro. Sin dependencias, sin build, sin frameworks: abres 
 - La rotación es de 6 personas: **Alejandro → Isaac → Bryan → Solano → Jorge → Frank**.
 - Solo cuentan los **martes y viernes** (2 eventos por semana).
 - La asignación no está escrita a mano: sale de una **fecha ancla** (martes 27 de octubre
-  de 2026 → Solano) y se calcula por semanas. Como son 6 personas y 2 días por semana,
+  de 2026 → Bryan) y se calcula por semanas. Como son 6 personas y 2 días por semana,
   el patrón se va desfasando solo mes con mes.
 - Arriba siempre se ve **“El próximo en traer es …”** con fecha y cuenta regresiva
   (`mañana`, `en 3 días`, `¡es hoy!`).
@@ -43,14 +43,14 @@ const CONFIG = {
     { name: 'Frank',     color: '#1971C2' },
   ],
   anchor: { year: 2026, month: 10, day: 27 }, // martes 27 oct 2026
-  anchorPersonIndex: 3,                        // 0=Alejandro … 3=Solano
+  anchorPersonIndex: 2,                        // 0=Alejandro … 2=Bryan
   eventWeekdays: [2, 5],                       // 2=martes, 5=viernes
   upcomingCount: 6,                            // filas en "Próximas fechas"
 
   // Excepciones: un día suelto que se mueve de fecha
   overrides: {
-    '2026-11-23': 'Frank',     // lunes 23 nov (en lugar del martes 24)
-    '2026-11-25': 'Alejandro', // miércoles 25 nov (en lugar del viernes 27)
+    '2026-11-23': 'Jorge',     // lunes 23 nov (en lugar del martes 24)
+    '2026-11-25': 'Frank',     // miércoles 25 nov (en lugar del viernes 27)
   },
   // Días sin buñuelos porque su turno se movió
   skipped: ['2026-11-24', '2026-11-27'],
@@ -73,9 +73,9 @@ puentes o eventos. Van con formato `'AAAA-MM-DD': 'Nombre'`.
   siguiente. Los turnos movidos no consumen lugar en el ciclo, así que la persona que
   habría tocado ese martes/viernes simplemente no trae esa semana.
 
-> Ejemplo: la semana del 23 de noviembre de 2026 le toca a Frank (martes 24) y
-> Alejandro (viernes 27), pero se recorre a lunes 23 y miércoles 25. Como son los
-> mismos turnos, nadie trae dos veces y el ciclo sigue igual el 1 de diciembre (Isaac).
+> Ejemplo: la semana del 23 de noviembre de 2026 le toca a Jorge (martes 24) y
+> Frank (viernes 27), pero se recorre a lunes 23 y miércoles 25. Como son los
+> mismos turnos, nadie trae dos veces y el ciclo sigue igual el 1 de diciembre (Alejandro).
 
 ## Paleta
 
