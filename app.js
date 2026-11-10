@@ -5,6 +5,7 @@ const CONFIG = {
   // Orden de la rotación (el ciclo se repite en este orden)
   people: [
     { name: 'Alejandro', color: '#D9480F' },
+    { name: 'Mafe',      color: '#B7791F' },
     { name: 'Isaac',     color: '#0C8599' },
     { name: 'Bryan',     color: '#5F3DC4' },
     { name: 'Solano',    color: '#C2255C' },
@@ -13,15 +14,15 @@ const CONFIG = {
   ],
   // Fecha ancla conocida: martes 27 de octubre de 2026 → le toca a "Bryan"
   anchor: { year: 2026, month: 10, day: 27 },
-  anchorPersonIndex: 2, // 0=Alejandro, 1=Isaac, 2=Bryan, 3=Solano, 4=Jorge, 5=Frank
+  anchorPersonIndex: 3, // 0=Alejandro, 1=Mafe, 2=Isaac, 3=Bryan, 4=Solano, 5=Jorge, 6=Frank
   eventWeekdays: [2, 5], // 2 = martes, 5 = viernes
   upcomingCount: 6,
 
   // Excepciones: días sueltos que se mueven de fecha (no alteran la rotación)
   // 'AAAA-MM-DD': 'Nombre'
   overrides: {
-    '2026-11-23': 'Jorge',     // lunes 23 nov (en lugar del martes 24)
-    '2026-11-25': 'Frank',     // miércoles 25 nov (en lugar del viernes 27)
+    '2026-11-23': 'Solano',    // lunes 23 nov (en lugar del martes 24)
+    '2026-11-25': 'Jorge',     // miércoles 25 nov (en lugar del viernes 27)
   },
   // Días sin buñuelos (turno movido o cancelado)
   skipped: ['2026-11-03', '2026-11-24', '2026-11-27'],

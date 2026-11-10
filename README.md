@@ -16,10 +16,10 @@ HTML, CSS y JavaScript puro. Sin dependencias, sin build, sin frameworks: abres 
 
 ## Cómo funciona
 
-- La rotación es de 6 personas: **Alejandro → Isaac → Bryan → Solano → Jorge → Frank**.
+- La rotación es de 7 personas: **Alejandro → Mafe → Isaac → Bryan → Solano → Jorge → Frank**.
 - Solo cuentan los **martes y viernes** (2 eventos por semana).
 - La asignación no está escrita a mano: sale de una **fecha ancla** (martes 27 de octubre
-  de 2026 → Bryan) y se calcula por semanas. Como son 6 personas y 2 días por semana,
+  de 2026 → Bryan) y se calcula por semanas. Como son 7 personas y 2 días por semana,
   el patrón se va desfasando solo mes con mes.
 - Arriba siempre se ve **“El próximo en traer es …”** con fecha y cuenta regresiva
   (`mañana`, `en 3 días`, `¡es hoy!`).
@@ -36,6 +36,7 @@ Todo vive en el objeto `CONFIG` al inicio de `app.js`:
 const CONFIG = {
   people: [
     { name: 'Alejandro', color: '#D9480F' },
+    { name: 'Mafe',      color: '#B7791F' },
     { name: 'Isaac',     color: '#0C8599' },
     { name: 'Bryan',     color: '#5F3DC4' },
     { name: 'Solano',    color: '#C2255C' },
@@ -43,14 +44,14 @@ const CONFIG = {
     { name: 'Frank',     color: '#1971C2' },
   ],
   anchor: { year: 2026, month: 10, day: 27 }, // martes 27 oct 2026
-  anchorPersonIndex: 2,                        // 0=Alejandro … 2=Bryan
+  anchorPersonIndex: 3,                        // 0=Alejandro … 3=Bryan
   eventWeekdays: [2, 5],                       // 2=martes, 5=viernes
   upcomingCount: 6,                            // filas en "Próximas fechas"
 
   // Excepciones: un día suelto que se mueve de fecha
   overrides: {
-    '2026-11-23': 'Jorge',     // lunes 23 nov (en lugar del martes 24)
-    '2026-11-25': 'Frank',     // miércoles 25 nov (en lugar del viernes 27)
+    '2026-11-23': 'Solano',    // lunes 23 nov (en lugar del martes 24)
+    '2026-11-25': 'Jorge',     // miércoles 25 nov (en lugar del viernes 27)
   },
   // Días sin buñuelos (turno movido o cancelado)
   skipped: ['2026-11-03', '2026-11-24', '2026-11-27'],
@@ -75,8 +76,8 @@ puentes o eventos. Van con formato `'AAAA-MM-DD': 'Nombre'`.
   siguiente. Los turnos movidos no consumen lugar en el ciclo, así que la persona que
   habría tocado ese martes/viernes simplemente no trae esa semana.
 
-> Ejemplo: la semana del 23 de noviembre de 2026 le toca a Jorge (martes 24) y
-> Frank (viernes 27), pero se recorre a lunes 23 y miércoles 25. Como son los
+> Ejemplo: la semana del 23 de noviembre de 2026 le toca a Solano (martes 24) y
+> Jorge (viernes 27), pero se recorre a lunes 23 y miércoles 25. Como son los
 > mismos turnos, nadie trae dos veces y el ciclo sigue igual el 1 de diciembre (Alejandro).
 
 ## Paleta
@@ -87,6 +88,7 @@ para reconocerlos de un vistazo:
 | Persona   | Color     | Hex       |
 | --------- | --------- | --------- |
 | Alejandro | naranja   | `#D9480F` |
+| Mafe      | ocre      | `#B7791F` |
 | Isaac     | teal      | `#0C8599` |
 | Bryan     | violeta   | `#5F3DC4` |
 | Solano    | frambuesa | `#C2255C` |
@@ -96,7 +98,7 @@ para reconocerlos de un vistazo:
 ## Responsive
 
 - **Escritorio / tablet:** nombre completo en cada día del calendario.
-- **Móvil:** el chip se vuelve un círculo con la inicial (A, I, B, S, J) para que
+- **Móvil:** el chip se vuelve un círculo con la inicial (A, M, I, B, S, J, F) para que
   quepan las 7 columnas; la lista de próximas fechas conserva el nombre completo.
 
 ## Publicar en GitHub Pages

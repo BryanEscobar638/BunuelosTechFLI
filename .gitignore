@@ -5,3 +5,6 @@ opencode.jsonc
 # Local environment files
 .env
 .env.*
+
+# Claude Code MCP config (contains credentials)
+.mcp.json
