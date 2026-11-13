@@ -16,10 +16,10 @@ HTML, CSS y JavaScript puro. Sin dependencias, sin build, sin frameworks: abres 
 
 ## Cómo funciona
 
-- La rotación es de 7 personas: **Alejandro → Mafe → Isaac → Bryan → Solano → Jorge → Frank**.
+- La rotación es de 8 personas: **Alejandro → Mafe → Isaac → Bryan → Solano → Jorge → Frank → Emanuel**.
 - Solo cuentan los **martes y viernes** (2 eventos por semana).
-- La asignación no está escrita a mano: sale de una **fecha ancla** (martes 27 de octubre
-  de 2026 → Bryan) y se calcula por semanas. Como son 7 personas y 2 días por semana,
+- La asignación no está escrita a mano: sale de una **fecha ancla** (viernes 13 de noviembre
+  de 2026 → Mafe) y se calcula por semanas. Como son 8 personas y 2 días por semana,
   el patrón se va desfasando solo mes con mes.
 - Arriba siempre se ve **“El próximo en traer es …”** con fecha y cuenta regresiva
   (`mañana`, `en 3 días`, `¡es hoy!`).
@@ -42,9 +42,10 @@ const CONFIG = {
     { name: 'Solano',    color: '#C2255C' },
     { name: 'Jorge',     color: '#2F9E44' },
     { name: 'Frank',     color: '#1971C2' },
+    { name: 'Emanuel',   color: '#495057' },
   ],
-  anchor: { year: 2026, month: 10, day: 27 }, // martes 27 oct 2026
-  anchorPersonIndex: 3,                        // 0=Alejandro … 3=Bryan
+  anchor: { year: 2026, month: 11, day: 13 }, // viernes 13 nov 2026
+  anchorPersonIndex: 1,                        // 0=Alejandro … 1=Mafe
   eventWeekdays: [2, 5],                       // 2=martes, 5=viernes
   upcomingCount: 6,                            // filas en "Próximas fechas"
 
@@ -94,11 +95,12 @@ para reconocerlos de un vistazo:
 | Solano    | frambuesa | `#C2255C` |
 | Jorge     | verde     | `#2F9E44` |
 | Frank     | azul      | `#1971C2` |
+| Emanuel   | gris      | `#495057` |
 
 ## Responsive
 
 - **Escritorio / tablet:** nombre completo en cada día del calendario.
-- **Móvil:** el chip se vuelve un círculo con la inicial (A, M, I, B, S, J, F) para que
+- **Móvil:** el chip se vuelve un círculo con la inicial (A, M, I, B, S, J, F, E) para que
   quepan las 7 columnas; la lista de próximas fechas conserva el nombre completo.
 
 ## Publicar en GitHub Pages

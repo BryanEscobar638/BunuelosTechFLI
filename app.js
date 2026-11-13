@@ -11,10 +11,11 @@ const CONFIG = {
     { name: 'Solano',    color: '#C2255C' },
     { name: 'Jorge',     color: '#2F9E44' },
     { name: 'Frank',     color: '#1971C2' },
+    { name: 'Emanuel',   color: '#495057' },
   ],
-  // Fecha ancla conocida: martes 27 de octubre de 2026 → le toca a "Bryan"
-  anchor: { year: 2026, month: 10, day: 27 },
-  anchorPersonIndex: 3, // 0=Alejandro, 1=Mafe, 2=Isaac, 3=Bryan, 4=Solano, 5=Jorge, 6=Frank
+  // Fecha ancla conocida: viernes 13 de noviembre de 2026 → le toca a "Mafe"
+  anchor: { year: 2026, month: 11, day: 13 },
+  anchorPersonIndex: 1, // 0=Alejandro, 1=Mafe, 2=Isaac, 3=Bryan, 4=Solano, 5=Jorge, 6=Frank, 7=Emanuel
   eventWeekdays: [2, 5], // 2 = martes, 5 = viernes
   upcomingCount: 6,
 
